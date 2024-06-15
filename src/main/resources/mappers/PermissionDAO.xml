@@ -4,16 +4,16 @@
     <update id="update" parameterType="Permission">
         update permission
         <set>
-            <if test="permissionName!=null">
-                permission_name =#{permissionName}
+            <if test="permissionName != null">
+                permission_name = #{permissionName},
             </if>
-            <if test="permissionUrl!=null">
-                permission_url=#{permissionUrl}
+            <if test="permissionUrl != null">
+                permission_url = #{permissionUrl},
             </if>
-            <if test="permissionType!=null">
-                permissionType=#{permissionType}
+            <if test="permissionType != null">
+                permission_type = #{permissionType}
             </if>
         </set>
-        where permission_id=#{permissionId}
+        where permission_id = #{permissionId}
     </update>
 </mapper>

@@ -4,13 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    private int userID;
+    private Integer userId;
     private String userName;
     private String password;
     private String email;
-    private String createTime;
+    private Timestamp createTime;
 }
