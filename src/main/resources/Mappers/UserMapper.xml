@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanqiao.rbac.dao.UserDao">
+    <select id="query" resultType="User" parameterType="QueryUserVO">
+        select * from user
+        <where>
+            <if test="userId!=null">
+                 and user_id=#{userId}
+            </if>
+            <if test="userName!=null">
+                and user_name like concat('%', #{userName}, '%')
+            </if>
+        </where>
+    </select>
+    <update id="update">
+        update user
+        <set>
+            <if test="userName!=null">
+                user_name=#{userName},
+            </if>
+            <if test="password!=null">
+                password=#{password},
+            </if>
+        </set>
+        where user_id=#{userId}
+    </update>
+
+</mapper>

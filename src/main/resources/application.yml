@@ -3,12 +3,18 @@ spring:
   datasource:
     username: icey
     password: Chinano1
-    url: jdbc:mysql://localhost:3306/rbac?useSSL=true
+    url: jdbc:mysql://localhost:3306/demo2?useSSL=true
     driverClassName: com.mysql.cj.jdbc.Driver
   #日期格式设置
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  #rabbitMQ配置
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
 #mybatis配置信息，使用注解都可以省略
 mybatis:
   mapper-locations: classpath:mappers/*.xml
@@ -18,4 +24,11 @@ mybatis:
 #showSql
 logging:
   level:
-    cn.cn.lanqiao.rbac.dao: debug
+    cn.lanqiao.rbac.dao: debug
+#pagehelper
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+  page-size-zero: true
