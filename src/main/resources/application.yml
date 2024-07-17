@@ -15,6 +15,25 @@ spring:
     port: 5672
     username: guest
     password: guest
+    listener:
+      type: simple
+      simple:
+        prefetch: 1
+        concurrency: 2
+        max-concurrency: 2
+  mail:
+    host: smtp.qq.com
+    username: 1919810@qq.com
+    password: yuanshenqidong
+    port: 465
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          starttls:
+            enable: true
 #mybatis配置信息，使用注解都可以省略
 mybatis:
   mapper-locations: classpath:mappers/*.xml

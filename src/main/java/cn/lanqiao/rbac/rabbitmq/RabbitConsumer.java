@@ -1,20 +1,22 @@
 package cn.lanqiao.rbac.rabbitmq;
 
+import cn.lanqiao.rbac.email.EmailSenderUtil;
+import cn.lanqiao.rbac.util.Result;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static cn.lanqiao.rbac.util.Result.success;
+
 @Component
-@RabbitListener(queues = "demoQueue")
+@RabbitListener(queues = "directQueue")
 public class RabbitConsumer {
+    @Autowired
+    EmailSenderUtil emailSenderUtil;
 
-    /**
-     * 消息消费
-     * @RabbitHandler 代表此方法为接受到消息后的处理方法
-     */
     @RabbitHandler
-    public void recieved(String msg) {
-        System.out.println("[demoQueue] recieved message: " + msg);
+    public void sendMail(String toMail){
+        emailSenderUtil.sendEmail(toMail);
     }
-
 }

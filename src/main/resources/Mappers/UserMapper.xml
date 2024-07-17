@@ -7,10 +7,13 @@
         select * from user
         <where>
             <if test="userId!=null">
-                 and user_id=#{userId}
+                or user_id=#{userId}
             </if>
             <if test="userName!=null">
-                and user_name like concat('%', #{userName}, '%')
+                or user_name like concat('%', #{userName}, '%')
+            </if>
+            <if test="email!=null">
+                or email = #{email}
             </if>
         </where>
     </select>
@@ -23,8 +26,23 @@
             <if test="password!=null">
                 password=#{password},
             </if>
+            <if test="email!=null">
+                email = #{email},
+            </if>
+            <if test="active!=null">
+                active = #{active},
+            </if>
         </set>
         where user_id=#{userId}
     </update>
-
+    <select id="login">
+        select user_id from user where
+        <if test="userId!=null">
+            user_Id=#{userId}
+        </if>
+        <if test="email!=null">
+            email=#{email}
+        </if>
+        and password=#{password}
+    </select>
 </mapper>
